@@ -1,0 +1,7 @@
+{
+  "name": "appm",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
