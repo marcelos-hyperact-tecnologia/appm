@@ -1,0 +1,7 @@
+{
+  "name": "appMa",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
