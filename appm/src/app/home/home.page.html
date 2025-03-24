@@ -1,13 +1,25 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Blank
-    </ion-title>
+  <ion-toolbar class="custom-toolbar">
+    <!-- Linha superior com o botão MENU -->
+    <div class="top-toolbar-line">
+      <ion-buttons slot="start">
+        <div class="menu-wrapper">
+          <ion-menu-button></ion-menu-button>
+          <span class="menu-label">MENU</span>
+        </div>
+      </ion-buttons>
+    </div>
+
+    <!-- Linha inferior com a seta e o título centralizado -->
+    <div class="bottom-toolbar-line">
+      <ion-back-button defaultHref="/home" class="custom-back"></ion-back-button>
+      <h1 class="page-title">Cadastrar na agenda</h1>
+    </div>
   </ion-toolbar>
 </ion-header>
+
+
+
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">

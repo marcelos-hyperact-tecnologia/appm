@@ -9,14 +9,13 @@ import {
   IonContent,
   IonList,
   IonItem,
-  IonLabel
-} from '@ionic/angular/standalone';
+  IonLabel, IonButtons } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   standalone: true,
-  imports: [
+  imports: [IonButtons, 
     IonApp,
     IonRouterOutlet,
     IonMenu,

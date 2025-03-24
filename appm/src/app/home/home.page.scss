@@ -1,3 +1,8 @@
+
+::ng-deep ion-header {
+  --background: #e8f6e9 !important;
+}
+
 #container {
   text-align: center;
 
@@ -24,4 +29,59 @@
 
 #container a {
   text-decoration: none;
+}
+
+.menu-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 2px 8px;           /* padding lateral menor */
+  background-color: #c5e8c8;
+  border-radius: 30px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  gap: 6px;
+  height: 32px;
+  min-width: auto;            /* deixa largura se ajustar ao conteúdo */
+  width: fit-content;         /* botão só ocupa o necessário */
+}
+
+.menu-label {
+  font-weight: 500;
+  font-size: 13px;
+  color: #1b5e20;
+}
+
+.custom-toolbar {
+  --background: #e8f6e9;
+  display: flex;
+  flex-direction: column;
+  padding-top: env(safe-area-inset-top);
+}
+
+.top-toolbar-line {
+  display: flex;
+  align-items: center;
+  padding: 4px 16px;
+}
+
+.bottom-toolbar-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  margin-top: 10px; /* ← espaçamento entre botão e título */
+}
+
+
+ion-back-button {
+  position: absolute;
+  left: 16px;
+  color: #1b5e20;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1b5e20;
 }

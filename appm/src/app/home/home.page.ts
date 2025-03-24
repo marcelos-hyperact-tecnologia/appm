@@ -5,7 +5,8 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonMenuButton
+  IonMenuButton,
+  IonBackButton
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -19,7 +20,8 @@ import {
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonContent
+    IonContent,
+    IonBackButton
   ],
 })
 export class HomePage {
