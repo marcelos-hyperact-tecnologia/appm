@@ -1,0 +1,103 @@
+:host {
+    --background-color: #e8f2ea;
+  }
+  
+  /* Aplica cor no <ion-content> diretamente */
+  ion-content {
+    --background: var(--background-color) !important;
+  }
+  
+  .home-container {
+    background-color: var(--background-color);
+    padding: 36px 16px 16px 16px; // ⬅️ padding-top: 26px (16 + 10)
+  }
+  
+  
+  .home-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;        // largura menor
+    height: 80px;       // altura menor
+    padding: 12px;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: auto;       // centraliza no ion-col
+  }
+  
+  
+  .home-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  
+  .home-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     // centraliza tudo horizontalmente
+    justify-content: flex-start;
+    text-align: center;
+  }
+  
+  .home-label {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #004d40;
+    text-align: center;
+    display: block;          // garante que ocupa toda a largura
+    width: 100%;             // força a largura total para centralizar corretamente
+  }
+  
+
+
+  
+  /* Botão MENU */
+  .menu-button {
+    --background: #a5d6c5 !important;
+    --color: #004d40 !important;
+    background-color: #a5d6c5 !important;
+    color: #004d40 !important;
+  
+    border-radius: 20px;
+    padding: 0 16px;
+    height: 36px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    gap: 8px;
+  }
+  
+  /* Texto do botão */
+  .menu-button span {
+    color: #004d40 !important;
+  }
+  
+  /* Ícone do botão */
+  .menu-button ion-icon {
+    color: #004d40 !important;
+    font-size: 22px !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: inline-block;
+  }
+  .app-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #004d40;
+    text-align: center;
+  }
+  
+  ion-toolbar {
+    --background: #e8f2ea !important;
+    background-color: #e8f2ea !important;
+    --ion-color-base: #e8f2ea !important; /* para temas */
+    box-shadow: none; /* remove sombreado se quiser flat */
+  }

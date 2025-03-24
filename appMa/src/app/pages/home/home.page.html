@@ -1,13 +1,29 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>home</ion-title>
+<ion-header>
+  <!-- Primeira linha: botão MENU -->
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-button class="menu-button" (click)="openMenu()" fill="solid">
+        <ion-icon name="menu-outline" slot="start"></ion-icon>
+        <span>MENU</span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <!-- Segunda linha: título centralizado -->
+  <ion-toolbar color="light">
+    <ion-title class="app-title">App THX</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">home</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="home-container" fullscreen>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" class="home-item" *ngFor="let item of homeItems">
+        <ion-card button (click)="navigateTo(item.route)" class="home-card">
+          <img [src]="item.icon" alt="{{ item.label }}" class="home-icon" />
+        </ion-card>
+        <ion-label class="home-label">{{ item.label }}</ion-label>
+      </ion-col>        
+    </ion-row>
+  </ion-grid>
 </ion-content>
