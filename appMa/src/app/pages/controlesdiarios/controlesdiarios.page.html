@@ -48,10 +48,26 @@
     </ion-item>
   </div>
 
-  <!-- Outras abas ainda sem conteúdo -->
   <div *ngIf="activeTab === 'glicemia'" class="registros">
-    <p>Em breve: Glicemia</p>
+    <ng-container *ngFor="let grupo of glicemiaAgrupada">
+      <div class="section-title">{{ grupo.titulo }}</div>
+  
+      <ion-item *ngFor="let item of grupo.registros">
+        <ion-label>
+          <p>{{ item.dia }} <span>{{ item.hora }}</span></p>
+          <h2>{{ item.valor }} <span class="unit">mg/dL</span></h2>
+        </ion-label>
+  
+        <ion-icon *ngIf="item.alerta" name="warning-outline" color="danger" slot="end"></ion-icon>
+  
+        <ion-button fill="clear" slot="end" size="small">
+          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ng-container>
   </div>
+  
+
 
   <div *ngIf="activeTab === 'pressao'" class="registros">
     <p>Em breve: Pressão</p>

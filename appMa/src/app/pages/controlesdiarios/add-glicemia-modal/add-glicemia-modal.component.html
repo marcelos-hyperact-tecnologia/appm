@@ -8,9 +8,10 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+
   <ion-item>
-    <ion-label position="floating">Glicemia (mg/dL)</ion-label>
-    <ion-input type="number" [(ngModel)]="valor"></ion-input>
+    <ion-label position="floating">Glicemia capilar (mg/dL)</ion-label>
+    <ion-input type="number" [(ngModel)]="valor" required></ion-input>
   </ion-item>
 
   <ion-item>
@@ -18,7 +19,14 @@
     <ion-datetime presentation="date-time" [(ngModel)]="data"></ion-datetime>
   </ion-item>
 
-  <ion-button expand="block" class="ion-margin-top" (click)="salvar()">
-    Salvar
+  <ion-button expand="block" color="primary" class="ion-margin-top" (click)="salvar()">
+    Cadastrar
   </ion-button>
+
+  <ion-button expand="block" color="danger" (click)="limpar()">
+    Limpar Campos
+  </ion-button>
+
+ 
+
 </ion-content>
