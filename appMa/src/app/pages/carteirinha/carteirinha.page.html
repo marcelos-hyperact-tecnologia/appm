@@ -1,8 +1,16 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>carteirinha</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button class="rounded-button"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Menu</ion-title>
   </ion-toolbar>
+<!-- Segunda linha: título centralizado -->
+<ion-toolbar color="light">
+  <ion-title class="app-title">Carteirinha</ion-title>
+</ion-toolbar>
 </ion-header>
+
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">

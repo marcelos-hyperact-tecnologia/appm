@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-perguntasfrequentes',
   templateUrl: './perguntasfrequentes.page.html',
   styleUrls: ['./perguntasfrequentes.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonicModule,      // ✅ já inclui IonButton, IonInput, IonToolbar, etc
+    CommonModule,
+    FormsModule,
+    RouterModule      // ✅ necessário por causa do [routerLink]
+  ]
 })
-export class PerguntasfrequentesPage implements OnInit {
+export class PerguntasfrequentesPage{
 
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }
