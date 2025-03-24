@@ -1,0 +1,17 @@
+<ion-header>
+  <!-- Primeira barra: botão MENU estilizado e funcional -->
+  <ion-toolbar>
+    <ion-buttons slot="start" class="menu-wrapper">
+      <ion-menu-button class="menu-button" autoHide="false"></ion-menu-button>
+      <span class="menu-label">MENU</span>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <!-- Segunda barra: seta de voltar + título -->
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login" text="" icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="app-title">{{ titulo }}</ion-title>
+  </ion-toolbar>
+</ion-header>

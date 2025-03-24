@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, MenuController } from '@ionic/angular';
 import { RouterModule, Router } from '@angular/router';
+import { PageHeaderComponent } from '../../components/page-header/page-header.component';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { RouterModule, Router } from '@angular/router';
     CommonModule,
     IonicModule,
     RouterModule,
-    IonicModule
+    IonicModule,
+    PageHeaderComponent
   ],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss']

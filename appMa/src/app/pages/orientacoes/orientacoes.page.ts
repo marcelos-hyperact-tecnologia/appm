@@ -3,6 +3,8 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { PageHeaderComponent } from '../../components/page-header/page-header.component';
+
 @Component({
   selector: 'app-orientacoes',
   templateUrl: './orientacoes.page.html',
@@ -12,7 +14,8 @@ import { RouterModule } from '@angular/router';
     IonicModule,      // ✅ já inclui IonButton, IonInput, IonToolbar, etc
     CommonModule,
     FormsModule,
-    RouterModule      // ✅ necessário por causa do [routerLink]
+    RouterModule,
+    PageHeaderComponent      // ✅ necessário por causa do [routerLink]
   ]
 })
 export class OrientacoesPage{

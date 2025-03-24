@@ -1,0 +1,36 @@
+.menu-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 8px;
+  }
+  
+  ion-menu-button.menu-button {
+    --background: #a5d6c5 !important;
+    --color: #004d40 !important;
+    background-color: #a5d6c5 !important;
+    border-radius: 20px;
+    padding: 0 16px;
+    height: 36px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Altera o ícone interno do botão */
+  ion-menu-button.menu-button::part(icon) {
+    color: #004d40;
+    font-size: 20px;
+  }
+  
+  /* Texto ao lado */
+  .menu-label {
+    color: #004d40;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+  

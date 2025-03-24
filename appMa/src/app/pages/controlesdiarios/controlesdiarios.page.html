@@ -1,20 +1,73 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button class="rounded-button"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Menu</ion-title>
-  </ion-toolbar>
-<!-- Segunda linha: título centralizado -->
-<ion-toolbar color="light">
-  <ion-title class="app-title">Controles Diários</ion-title>
-</ion-toolbar>
-</ion-header>
+<app-page-header titulo="Controles diários"></app-page-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">controlesdiarios</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <!-- Tabs -->
+  <ion-segment [(ngModel)]="activeTab" value="peso" class="custom-tabs">
+    <ion-segment-button value="peso">PESO</ion-segment-button>
+    <ion-segment-button value="glicemia">GLICEMIA</ion-segment-button>
+    <ion-segment-button value="pressao">PRESSÃO</ion-segment-button>
+    <ion-segment-button value="temperatura">TEMPERATURA</ion-segment-button>
+  </ion-segment>
+
+  <!-- PESO -->
+  <div *ngIf="activeTab === 'peso'" class="registros">
+    <div class="section-title">MARÇO - 2024</div>
+
+    <ion-item>
+      <ion-label>
+        <p>Dia 30 <span>11:25</span></p>
+        <h2>75 <span class="unit">Kg</span></h2>
+      </ion-label>
+      <ion-icon name="warning-outline" color="danger" slot="end"></ion-icon>
+      <ion-button fill="clear" slot="end" size="small">
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <p>Dia 28 <span>08:25</span></p>
+        <h2>73,8 <span class="unit">Kg</span></h2>
+      </ion-label>
+      <ion-icon name="warning-outline" color="danger" slot="end"></ion-icon>
+      <ion-button fill="clear" slot="end" size="small">
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <div class="section-title">FEVEREIRO - 2024</div>
+    <ion-item>
+      <ion-label>
+        <p>Dia 26 <span>09:11</span></p>
+        <h2>70,3 <span class="unit">Kg</span></h2>
+      </ion-label>
+      <ion-button fill="clear" slot="end" size="small">
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </div>
+
+  <!-- Outras abas ainda sem conteúdo -->
+  <div *ngIf="activeTab === 'glicemia'" class="registros">
+    <p>Em breve: Glicemia</p>
+  </div>
+
+  <div *ngIf="activeTab === 'pressao'" class="registros">
+    <p>Em breve: Pressão</p>
+  </div>
+
+  <div *ngIf="activeTab === 'temperatura'" class="registros">
+    <p>Em breve: Temperatura</p>
+  </div>
+
+  <!-- Botão flutuante -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openModal()">
+      <ion-icon name="add"></ion-icon>
+      <span class="fab-label">{{ activeTab.toUpperCase() }}</span>
+    </ion-fab-button>
+  </ion-fab>
+  
+
 </ion-content>
