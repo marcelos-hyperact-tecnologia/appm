@@ -6,15 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { GlicemiaService } from '../../../services/glicemia.service';
 import { RouterModule } from '@angular/router';
 
-
-
 @Component({
   selector: 'app-add-glicemia-modal',
   standalone: true,
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    RouterModule // ✅ necessário se quiser usar [routerLink] no futuro
   ],
   templateUrl: './add-glicemia-modal.component.html',
   styleUrls: ['./add-glicemia-modal.component.scss'],
@@ -25,7 +24,7 @@ export class AddGlicemiaModalComponent {
 
   constructor(
     private modalCtrl: ModalController,
-    private glicemiaService: GlicemiaService // ✅ injeta o serviço
+    private glicemiaService: GlicemiaService
   ) {}
 
   cancelar() {

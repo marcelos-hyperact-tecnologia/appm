@@ -3,75 +3,106 @@
 <ion-content class="ion-padding">
 
   <!-- Tabs -->
-  <ion-segment [(ngModel)]="activeTab" value="peso" class="custom-tabs">
+  <ion-segment [(ngModel)]="activeTab" (ngModelChange)="onTabChange($event)" class="custom-tabs">
     <ion-segment-button value="peso">PESO</ion-segment-button>
     <ion-segment-button value="glicemia">GLICEMIA</ion-segment-button>
     <ion-segment-button value="pressao">PRESSÃO</ion-segment-button>
     <ion-segment-button value="temperatura">TEMPERATURA</ion-segment-button>
   </ion-segment>
+  
 
   <!-- PESO -->
   <div *ngIf="activeTab === 'peso'" class="registros">
-    <div class="section-title">MARÇO - 2024</div>
-
-    <ion-item>
-      <ion-label>
-        <p>Dia 30 <span>11:25</span></p>
-        <h2>75 <span class="unit">Kg</span></h2>
-      </ion-label>
-      <ion-icon name="warning-outline" color="danger" slot="end"></ion-icon>
-      <ion-button fill="clear" slot="end" size="small">
-        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>
-        <p>Dia 28 <span>08:25</span></p>
-        <h2>73,8 <span class="unit">Kg</span></h2>
-      </ion-label>
-      <ion-icon name="warning-outline" color="danger" slot="end"></ion-icon>
-      <ion-button fill="clear" slot="end" size="small">
-        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-
-    <div class="section-title">FEVEREIRO - 2024</div>
-    <ion-item>
-      <ion-label>
-        <p>Dia 26 <span>09:11</span></p>
-        <h2>70,3 <span class="unit">Kg</span></h2>
-      </ion-label>
-      <ion-button fill="clear" slot="end" size="small">
-        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </div>
-
-  <div *ngIf="activeTab === 'glicemia'" class="registros">
-    <ng-container *ngFor="let grupo of glicemiaAgrupada">
+    <ng-container *ngFor="let grupo of pesoAgrupado">
       <div class="section-title">{{ grupo.titulo }}</div>
   
       <ion-item *ngFor="let item of grupo.registros">
         <ion-label>
-          <p>{{ item.dia }} <span>{{ item.hora }}</span></p>
-          <h2>{{ item.valor }} <span class="unit">mg/dL</span></h2>
+          <ion-row class="ion-justify-content-between ion-align-items-center">
+            <ion-col size="6">
+              <p><strong>{{ item.dia }} {{ item.hora }}</strong></p>
+            </ion-col>
+            <ion-col size="4">
+              <p>{{ item.valor }} <span class="unit">Kg</span></p>
+            </ion-col>
+            <ion-col size="2" class="ion-text-end">
+              <ion-button fill="solid" color="medium" size="small" shape="round" (click)="abrirMenuPeso(item)">
+                <ion-icon name="ellipsis-vertical-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
         </ion-label>
-  
-        <ion-icon *ngIf="item.alerta" name="warning-outline" color="danger" slot="end"></ion-icon>
-  
-        <ion-button fill="clear" slot="end" size="small">
-          <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-        </ion-button>
       </ion-item>
     </ng-container>
   </div>
   
 
+  <!-- GLICEMIA -->
+  <div *ngIf="activeTab === 'glicemia'" class="registros">
+    <ng-container *ngFor="let grupo of glicemiaAgrupada">
+      <div class="section-title">{{ grupo.titulo }}</div>
+  
+      <ion-item *ngFor="let item of grupo.registros">
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="4">
+              <p><strong>{{ item.dia }}</strong> <span>{{ item.hora }}</span></p>
+            </ion-col>
+            <ion-col size="4">
+              <p>
+                {{ item.valor }} <span class="unit">mg/dL</span>
+                <ion-icon
+                  *ngIf="item.alerta"
+                  name="warning-outline"
+                  color="danger"
+                  class="icon-alerta"
+                  style="margin-left: 6px;">
+                </ion-icon>
+              </p>
+            </ion-col>
+            <ion-col size="4" class="ion-text-end">
+              <ion-button fill="solid" color="medium" size="small" shape="round" (click)="abrirMenuGlicemia(item)">
+                <ion-icon name="ellipsis-vertical-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+                            
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ng-container>
+  </div>
+  
+  
+  
+
 
   <div *ngIf="activeTab === 'pressao'" class="registros">
-    <p>Em breve: Pressão</p>
+    <ng-container *ngFor="let grupo of pressaoAgrupada">
+      <div class="section-title">{{ grupo.titulo }}</div>
+  
+      <ion-item *ngFor="let item of grupo.registros">
+        <ion-label>
+          <ion-row class="ion-justify-content-between ion-align-items-center">
+            <ion-col size="6">
+              <p><strong>{{ item.dia }} {{ item.hora }}</strong></p>
+            </ion-col>
+            <ion-col size="4">
+              <p>
+                {{ item.sistolica }}/{{ item.diastolica }} <span class="unit">mmHg</span>
+                <ion-icon *ngIf="item.alerta" name="warning-outline" color="danger" class="icon-alerta"></ion-icon>
+              </p>
+            </ion-col>
+            <ion-col size="2" class="ion-text-end">
+              <ion-button fill="solid" color="medium" size="small" shape="round" (click)="abrirMenuPressao(item)">
+                <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-label>
+      </ion-item>
+    </ng-container>
   </div>
+  
 
   <div *ngIf="activeTab === 'temperatura'" class="registros">
     <p>Em breve: Temperatura</p>
