@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { PageHeaderComponent } from '../../components/page-header/page-header.component';
 
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 @Component({
   selector: 'app-carteirinha',
   standalone: true,
@@ -28,6 +31,20 @@ export class CarteirinhaPage {
   }
 
   exportar() {
-    console.log('Exportar');
+    const elemento = document.getElementById('carteirinha');
+
+    if (elemento) {
+      html2canvas(elemento).then((canvas) => {
+        const imagem = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const largura = pdf.internal.pageSize.getWidth();
+        const altura = (canvas.height * largura) / canvas.width;
+
+        pdf.addImage(imagem, 'PNG', 0, 10, largura, altura);
+        pdf.save('carteirinha.pdf');
+      });
+    } else {
+      console.error('Elemento carteirinha não encontrado!');
+    }
   }
 }

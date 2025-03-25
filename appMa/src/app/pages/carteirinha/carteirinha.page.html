@@ -1,29 +1,34 @@
-<app-page-header titulo="Carteirinha" />
-
 <ion-content class="ion-padding">
+  <app-page-header titulo="Carteirinha"></app-page-header>
 
-  <div class="card-top">
-    <h2>EU SOU<br>TRANSPLANTADO</h2>
+  <div id="carteirinha" class="carteirinha-box ion-text-center ion-padding">
+    <h3 class="titulo">EU SOU<br><strong>TRANSPLANTADO</strong></h3>
+
+    <div class="dados">
+      <ion-grid>
+        <ion-row>
+          <ion-col><strong>Nome:</strong><br>Maria da Silva</ion-col>
+          <ion-col><strong>Data de nascimento:</strong><br>10/10/1990</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><strong>CPF:</strong><br>999.999.999-99</ion-col>
+          <ion-col><strong>CNS:</strong><br>999999999999999</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><strong>Hospital transplantador:</strong><br>HU UFSC</ion-col>
+          <ion-col><strong>Órgão transplantado:</strong><br>Fígado</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><strong>Data do transplante:</strong><br>10/10/2010</ion-col>
+          <ion-col><strong>Data do retransplante:</strong><br>10/10/2010</ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </div>
 
-  <div class="info-grid">
-    <div><strong>Nome:</strong> {{ dados.nome }}</div>
-    <div><strong>Data de nascimento:</strong> {{ dados.nascimento }}</div>
-    <div><strong>CPF:</strong> {{ dados.cpf }}</div>
-    <div><strong>CNS:</strong> {{ dados.cns }}</div>
-    <div><strong>Hospital transplantador:</strong> {{ dados.hospital }}</div>
-    <div><strong>Órgão transplantado:</strong> {{ dados.orgao }}</div>
-    <div><strong>Data do transplante:</strong> {{ dados.dataTransplante }}</div>
-    <div><strong>Data do retransplante:</strong> {{ dados.dataRetransplante }}</div>
-  </div>
-
-  <ion-button expand="block" color="success" (click)="compartilhar()">
-    COMPARTILHAR
-  </ion-button>
-
-  <ion-button expand="block" fill="clear" color="medium" (click)="exportar()">
-    <ion-icon name="download-outline" slot="start"></ion-icon>
+  <ion-button expand="block" color="primary" (click)="compartilhar()">COMPARTILHAR</ion-button>
+  <ion-button expand="block" fill="outline" (click)="exportar()">
+    <ion-icon slot="start" name="document-outline"></ion-icon>
     EXPORTAR
   </ion-button>
-
 </ion-content>
