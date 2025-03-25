@@ -1,23 +1,33 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PageHeaderComponent } from '../../components/page-header/page-header.component';
 
 @Component({
   selector: 'app-carteirinha',
+  standalone: true,
+  imports: [IonicModule, CommonModule, RouterModule, PageHeaderComponent],
   templateUrl: './carteirinha.page.html',
   styleUrls: ['./carteirinha.page.scss'],
-  standalone: true,
-  imports: [
-    IonicModule,      // ✅ já inclui IonButton, IonInput, IonToolbar, etc
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    PageHeaderComponent      // ✅ necessário por causa do [routerLink]
-  ]
 })
-export class CarteirinhaPage{
+export class CarteirinhaPage {
+  dados = {
+    nome: 'Maria da Silva',
+    nascimento: '10/10/1990',
+    cpf: '999.999.999-99',
+    cns: '999999999999999',
+    hospital: 'HU UFSC',
+    orgao: 'Fígado',
+    dataTransplante: '10/10/2010',
+    dataRetransplante: '10/10/2010'
+  };
 
+  compartilhar() {
+    console.log('Compartilhar');
+  }
+
+  exportar() {
+    console.log('Exportar');
+  }
 }

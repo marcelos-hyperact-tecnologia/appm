@@ -1,0 +1,22 @@
+.card-top {
+    background-color: #eaf6ef;
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  
+    h2 {
+      color: #1c7c5a;
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  
