@@ -3,8 +3,10 @@ import { ModalController } from '@ionic/angular';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { GlicemiaService } from '../../../services/glicemia.service'; // ✅ ajuste o caminho se necessário
+import { GlicemiaService } from '../../../services/glicemia.service';
 import { RouterModule } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-add-glicemia-modal',

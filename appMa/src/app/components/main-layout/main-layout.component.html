@@ -1,9 +1,16 @@
 <ion-menu menuId="main" side="start" contentId="main-content" type="overlay">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="light">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
+    <ion-toolbar color="medium">
+      <ion-title size="small">
+        {{ nomeUsuario || 'Usuário' }}<br />
+        <small *ngIf="papelUsuario">({{ papelUsuario | titlecase }})</small>
+      </ion-title>
+    </ion-toolbar>
   </ion-header>
+
   <ion-content>
     <ion-list>
       <ion-item routerLink="/home">Home</ion-item>
@@ -15,6 +22,17 @@
       <ion-item routerLink="/controlesdiarios">Controles Diários</ion-item>
       <ion-item routerLink="/orientacoes">Orientações</ion-item>
       <ion-item routerLink="/perguntasfrequentes">Perguntas Frequentes</ion-item>
+
+      <!-- Visível apenas se papel for admin -->
+      <ion-item *ngIf="exibirAdmin" routerLink="/painel-admin">Painel Admin</ion-item>
+
+      <!-- Visível apenas se papel for receptor -->
+      <ion-item *ngIf="exibirReceptor" routerLink="/perfil-receptor">Perfil Receptor</ion-item>
+
+      <ion-item button color="danger" (click)="logout()">
+        <ion-icon slot="start" name="log-out-outline"></ion-icon>
+        <ion-label>Sair</ion-label>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
