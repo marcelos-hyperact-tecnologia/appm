@@ -104,9 +104,34 @@
   </div>
   
 
-  <div *ngIf="activeTab === 'temperatura'" class="registros">
-    <p>Em breve: Temperatura</p>
-  </div>
+  <!-- TEMPERATURA -->
+<div *ngIf="activeTab === 'temperatura'" class="registros">
+  <ng-container *ngFor="let grupo of temperaturaAgrupada">
+    <div class="section-title">{{ grupo.titulo }}</div>
+
+    <ion-item *ngFor="let item of grupo.registros">
+      <ion-label>
+        <ion-row class="ion-justify-content-between ion-align-items-center">
+          <ion-col size="6">
+            <p><strong>{{ item.dia }} {{ item.hora }}</strong></p>
+          </ion-col>
+          <ion-col size="4">
+            <p>
+              {{ item.valor }} <span class="unit">ºC</span>
+              <ion-icon *ngIf="item.alerta" name="warning-outline" color="danger" class="icon-alerta"></ion-icon>
+            </p>
+          </ion-col>
+          <ion-col size="2" class="ion-text-end">
+            <ion-button fill="solid" color="medium" size="small" shape="round" (click)="abrirMenuTemperatura(item)">
+              <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-label>
+    </ion-item>
+  </ng-container>
+</div>
+
 
   <!-- Botão flutuante -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

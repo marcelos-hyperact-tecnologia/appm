@@ -13,7 +13,7 @@ import { AddTemperaturaModalComponent } from './add-temperatura-modal/add-temper
 import { GlicemiaService } from '../../services/glicemia.service';
 import { PesoService } from '../../services/peso.service';
 import { PressaoService } from '../../services/pressao.service';
-
+import { TemperaturaService } from '../../services/temperatura.service';
 
 @Component({
   selector: 'app-controlesdiarios',
@@ -33,7 +33,7 @@ export class ControlesdiariosPage implements OnInit {
   glicemiaAgrupada: { titulo: string, registros: any[] }[] = [];
   pesoAgrupado: { titulo: string, registros: any[] }[] = [];
   pressaoAgrupada: { titulo: string, registros: any[] }[] = []
-
+  temperaturaAgrupada: { titulo: string, registros: any[] }[] = [];
 
 
   constructor(
@@ -42,7 +42,8 @@ export class ControlesdiariosPage implements OnInit {
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
     private pesoService: PesoService,
-    private pressaoService: PressaoService
+    private pressaoService: PressaoService,
+    private temperaturaService: TemperaturaService
   ) {}
 
   ngOnInit(): void {
@@ -331,6 +332,135 @@ export class ControlesdiariosPage implements OnInit {
     });
   }
 
+  carregarTemperaturas() {
+    const userId = localStorage.getItem('objectId');
+    if (!userId) return;
+  
+    this.temperaturaService.getTemperaturas(userId).subscribe({
+      next: (res) => {
+        const agrupado: { [key: string]: any[] } = {};
+  
+        res.results.forEach((item: any) => {
+          const data = new Date(item.data);
+          const mesAno = data.toLocaleString('default', { month: 'long' }).toUpperCase() + ' - ' + data.getFullYear();
+          const dia = `Dia ${data.getDate().toString().padStart(2, '0')}`;
+          const hora = data.toTimeString().slice(0, 5);
+  
+          const registro = {
+            objectId: item.objectId,
+            dia,
+            hora,
+            valor: item.temperatura,
+            alerta: item.temperatura > 38.5
+          };
+  
+          if (!agrupado[mesAno]) agrupado[mesAno] = [];
+          agrupado[mesAno].push(registro);
+        });
+  
+        this.temperaturaAgrupada = Object.entries(agrupado).map(([titulo, registros]) => ({ titulo, registros }));
+      },
+      error: () => {
+        this.toastCtrl.create({
+          message: 'Erro ao carregar temperaturas',
+          duration: 3000,
+          color: 'danger'
+        }).then(t => t.present());
+      }
+    });
+  }
+  
+  async abrirMenuTemperatura(item: any) {
+    const alert = await this.alertCtrl.create({
+      header: 'Ações',
+      buttons: [
+        {
+          text: 'Editar',
+          handler: () => this.editarTemperatura(item),
+        },
+        {
+          text: 'Excluir',
+          role: 'destructive',
+          handler: () => this.excluirTemperatura(item),
+        },
+        { text: 'Cancelar', role: 'cancel' },
+      ],
+    });
+    await alert.present();
+  }
+  
+  async editarTemperatura(item: any) {
+    const alert = await this.alertCtrl.create({
+      header: 'Editar Temperatura',
+      inputs: [{ name: 'valor', type: 'number', value: item.valor }],
+      buttons: [
+        { text: 'Cancelar', role: 'cancel' },
+        {
+          text: 'Salvar',
+          handler: (data) => {
+            const novoValor = +data.valor;
+            if (!novoValor) return false;
+  
+            this.temperaturaService.updateTemperatura(item.objectId, novoValor).subscribe({
+              next: () => {
+                this.recarregarAba();
+                this.toastCtrl.create({
+                  message: 'Temperatura atualizada!',
+                  duration: 2000,
+                  color: 'success',
+                }).then(t => t.present());
+              },
+              error: () => {
+                this.toastCtrl.create({
+                  message: 'Erro ao atualizar temperatura',
+                  duration: 2000,
+                  color: 'danger',
+                }).then(t => t.present());
+              }
+            });
+  
+            return true;
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  
+  async excluirTemperatura(item: any) {
+    const confirm = await this.alertCtrl.create({
+      header: 'Confirmar exclusão?',
+      buttons: [
+        { text: 'Cancelar', role: 'cancel' },
+        {
+          text: 'Excluir',
+          role: 'destructive',
+          handler: () => {
+            this.temperaturaService.deleteTemperatura(item.objectId).subscribe({
+              next: () => {
+                this.recarregarAba();
+                this.toastCtrl.create({
+                  message: 'Temperatura removida!',
+                  duration: 2000,
+                  color: 'danger',
+                }).then(t => t.present());
+              },
+              error: () => {
+                this.toastCtrl.create({
+                  message: 'Erro ao excluir temperatura',
+                  duration: 2000,
+                  color: 'danger',
+                }).then(t => t.present());
+              }
+            });
+          }
+        }
+      ]
+    });
+  
+    await confirm.present();
+  }
+  
   
   async abrirMenuGlicemia(item: any) {
     const alert = await this.alertCtrl.create({
@@ -558,11 +688,6 @@ export class ControlesdiariosPage implements OnInit {
     await confirm.present();
   }
   
-
-
-  
-  carregarTemperaturas() {}
-
 
 
   onTabChange(novaAba: string) {

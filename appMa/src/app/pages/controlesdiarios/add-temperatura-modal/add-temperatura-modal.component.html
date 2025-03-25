@@ -10,7 +10,7 @@
 <ion-content class="ion-padding">
   <ion-item>
     <ion-label position="floating">Temperatura (°C)</ion-label>
-    <ion-input type="number" [(ngModel)]="temperatura"></ion-input>
+    <ion-input type="number" [(ngModel)]="temperatura" required></ion-input>
   </ion-item>
 
   <ion-item>
@@ -18,7 +18,11 @@
     <ion-datetime presentation="date-time" [(ngModel)]="data"></ion-datetime>
   </ion-item>
 
-  <ion-button expand="block" class="ion-margin-top" (click)="salvar()">
-    Salvar
+  <ion-button expand="block" color="primary" class="ion-margin-top" (click)="salvar()">
+    Cadastrar
+  </ion-button>
+
+  <ion-button expand="block" color="medium" (click)="limpar()">
+    Limpar Campos
   </ion-button>
 </ion-content>

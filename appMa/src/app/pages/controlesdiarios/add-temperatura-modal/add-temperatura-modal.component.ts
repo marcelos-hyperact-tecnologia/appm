@@ -28,4 +28,9 @@ export class AddTemperaturaModalComponent {
       });
     }
   }
+
+  limpar() {
+    this.temperatura = null;
+    this.data = new Date().toISOString();
+  }
 }
